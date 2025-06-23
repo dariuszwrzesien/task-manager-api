@@ -5,6 +5,8 @@ import { TasksRepository } from './tasks.repository';
 import { TaskStatus } from './task-status.enum';
 import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 
+//Business logic for tasks management
+
 @Injectable()
 export class TasksService {
   constructor(private readonly tasksRepository: TasksRepository) {}
