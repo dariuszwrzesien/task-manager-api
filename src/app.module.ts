@@ -15,6 +15,8 @@ import { User } from './auth/user.entity';
       password: 'postgres',
       database: 'task-manager',
       autoLoadEntities: true,
+      // Setting `synchronize: true` shouldn't be used in production - otherwise you can lose production data.
+      // Source: https://docs.nestjs.com/techniques/database
       synchronize: true,
       entities: [User, Task],
     }),
