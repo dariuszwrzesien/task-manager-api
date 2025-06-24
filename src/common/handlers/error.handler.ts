@@ -2,6 +2,7 @@ import {
   ConflictException,
   HttpException,
   InternalServerErrorException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { DatabaseCodes } from '../enums/database-codes.enum';
 
@@ -27,4 +28,12 @@ export const repositoryErrorHandler = (
   return new InternalServerErrorException(
     DEFAULT_INTERNAL_SERVER_ERROR_MESSAGE,
   );
+};
+
+const DEFAULT_LOGIN_ERROR_MESSAGE = 'Invalid credentials';
+
+export const loginErrorHandler = (
+  message: string = DEFAULT_LOGIN_ERROR_MESSAGE,
+): HttpException => {
+  return new UnauthorizedException(message);
 };
