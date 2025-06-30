@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { DatabaseCodes } from '../enums/database-codes.enum';
 
+const DEFAULT_LOGIN_ERROR_MESSAGE = 'Invalid credentials';
 const DEFAULT_CONFLICT_ERROR_MESSAGE = 'Conflict: unique constraint violation';
 const DEFAULT_INTERNAL_SERVER_ERROR_MESSAGE = 'An unexpected error occurred';
 
@@ -29,8 +30,6 @@ export const repositoryErrorHandler = (
     DEFAULT_INTERNAL_SERVER_ERROR_MESSAGE,
   );
 };
-
-const DEFAULT_LOGIN_ERROR_MESSAGE = 'Invalid credentials';
 
 export const loginErrorHandler = (
   message: string = DEFAULT_LOGIN_ERROR_MESSAGE,
