@@ -8,8 +8,9 @@ import { ConfigService } from '@nestjs/config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const logger = new Logger('Bootstrap');
-  const port: number =
-    app.get<ConfigService>(ConfigService).get('APP_PORT') || 3000;
+  const port = app
+    .get<ConfigService>(ConfigService)
+    .get<number>('APP_PORT', 3000);
 
   app.enableCors(); // Enable CORS for all routes not good for production
   app.useGlobalPipes(new ValidationPipe());
