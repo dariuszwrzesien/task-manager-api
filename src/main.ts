@@ -6,8 +6,9 @@ import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
-  const port = process.env.PORT || 3000;
   const app = await NestFactory.create(AppModule);
+  const port = 3000;
+  app.enableCors(); // Enable CORS for all routes not good for production
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new TransformInterceptor());
   await app.listen(port);

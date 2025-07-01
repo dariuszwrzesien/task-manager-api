@@ -16,6 +16,8 @@ The primary objective of this project is to utilize the NestJS framework, along 
 
 5. Logging implemented with the NestJS Logger
 
+6. Configuration via ConfigModule provided by NestJs
+
 ## Project setup
 
 ```bash
