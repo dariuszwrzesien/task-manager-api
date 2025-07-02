@@ -18,6 +18,8 @@ The primary objective of this project is to utilize the NestJS framework, along 
 
 6. Configuration via ConfigModule provided by NestJs
 
+7. Unit test
+
 ## Project setup
 
 ```bash
