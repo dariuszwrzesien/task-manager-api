@@ -17,13 +17,6 @@ const mockUser = {
   tasks: [],
 };
 
-const mockTask = new Task();
-mockTask.id = 'task1';
-mockTask.title = 'Test Task';
-mockTask.description = 'Test Description';
-mockTask.status = TaskStatus.OPEN;
-mockTask.user = mockUser;
-
 describe('TasksService', () => {
   let tasksService: TasksService;
   let tasksRepository: TasksRepository;
@@ -57,7 +50,14 @@ describe('TasksService', () => {
   });
   describe('getTaskById', () => {
     it('calls TasksRepository.findOneBy and returns the task', async () => {
-      jest.spyOn(tasksRepository, 'findOneBy').mockResolvedValue(mockTask);
+      const mockTask = new Task();
+      mockTask.id = 'task1';
+      mockTask.title = 'Test Task';
+      mockTask.description = 'Test Description';
+      mockTask.status = TaskStatus.OPEN;
+      mockTask.user = mockUser;
+
+      (tasksRepository.findOneBy as jest.Mock).mockResolvedValue(mockTask);
       const result = await tasksService.getTaskById('task1', mockUser);
       expect(tasksRepository.findOneBy).toHaveBeenCalledWith({
         id: 'task1',
@@ -69,7 +69,7 @@ describe('TasksService', () => {
     it('throws NotFoundException if task not found', async () => {
       const actualId = 'nonexistent';
       const expectedError = `Task with ID ${actualId} not found`;
-      jest.spyOn(tasksRepository, 'findOneBy').mockResolvedValue(null);
+      (tasksRepository.findOneBy as jest.Mock).mockResolvedValue(null);
 
       await expect(
         tasksService.getTaskById(actualId, mockUser),
